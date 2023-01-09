@@ -1,6 +1,7 @@
 import datetime
 from bot_helper import enviar_mensaje
 from time import sleep
+import fisico
 
 # Variables control
 porcentaje_alimento = "files/porcentaje_alimento.txt"
@@ -87,14 +88,14 @@ def alimentar():
 def checar_nivel():
 	global porcentaje_alimento_aux
 	# realiar lectura con el sensor
-	valor = 70
+	valor = fisico.leer_sensor()
 	if valor != porcentaje_alimento_aux:
 		porcentaje_alimento_aux = valor 
 		set_porcentaje_alimento(str(valor))
 
 def soltar_alimento():
 	valor = get_tamano_porcion()
-	# mover el motor valor veces
+	fisico.mover_motor(valor)
 
 # funciones control sistema
 def alimento_programado():
